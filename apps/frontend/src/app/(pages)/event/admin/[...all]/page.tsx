@@ -1,7 +1,7 @@
 'use client'
 import EventDashboard from "@/components/event/EventDashboard";
 import PasswordEventForm from "@/components/event/PasswordEventForm";
-import { Event, Guest } from "@/core";
+import { Event, Guest } from "core";
 import { use, useEffect, useState } from "react";
 
 export default function EventAdminPage(props: any) {

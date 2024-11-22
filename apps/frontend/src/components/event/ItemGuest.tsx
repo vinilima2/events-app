@@ -1,4 +1,4 @@
-import { Guest } from "@/core";
+import { Guest } from "core";
 
 export interface ItemGuestProps {
     guest: Guest

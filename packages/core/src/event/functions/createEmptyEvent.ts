@@ -1,4 +1,5 @@
-import { Event, Id } from "@/core";
+import { Id } from "../../shared";
+import Event from "../model/Event";
 
 export default function createEmptyEvent(): Partial<Event> {
     return {
