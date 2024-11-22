@@ -40,7 +40,7 @@ declare class EventDate {
 
 declare class Id {
     static newId(): string;
-    private static hash;
+    static isValid(id: string): boolean;
 }
 
 declare class Password {
