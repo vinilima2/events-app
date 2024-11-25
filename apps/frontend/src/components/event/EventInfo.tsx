@@ -1,4 +1,4 @@
-import { Event } from "core";
+import { Event } from "core/dist";
 import Info from "../shared/Info";
 
 export interface EventInfoProps {
