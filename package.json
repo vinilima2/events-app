@@ -1,12 +1,14 @@
 {
   "name": "events-app",
+  "private": "true",
   "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "run-p packages:* apps:*",
+    "packages:core": "cd packages/core && npm run dev",
     "apps:frontend": "cd apps/frontend && npm run dev",
     "apps:backend": "cd apps/backend && npm run dev",
-    "packages:core": "cd packages/core && npm run dev"
+    "apps:mobile": "cd apps/mobile && expo start --web"
   },
   "keywords": [],
   "author": "",
