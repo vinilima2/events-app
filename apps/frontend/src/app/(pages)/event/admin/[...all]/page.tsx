@@ -10,27 +10,26 @@ export default function EventAdminPage(props: any) {
     const [event, setEvent] = useState<Event | null>(null);
     const [password, setPassword] = useState<string | null>(params.all[1] ?? null);
 
-    const confirmed = event?.guests.filter(guest => guest.confirmed) ?? []
-    const nonConfirmed = event?.guests.filter(guest => !guest.confirmed) ?? []
+    const confirmed = event?.guests?.filter((guest:any) => guest.confirmed) ?? []
+    const nonConfirmed = event?.guests?.filter((guest:any) => !guest.confirmed) ?? []
     const totalGuests = confirmed.reduce((total: number, guest: Guest) => {
         return total + (guest.numberCompanions + 1)
     }, 0)
 
     function loadEvent(): any {
-        setEvent({
-
-        } as Event)
+       //Change
     }
 
     useEffect(() => {
         loadEvent()
+        console.log("logou")
     }, [id])
 
     return (
         <div className="flex flex-col items-center">
             {event ? (
                 <EventDashboard event={event} total={totalGuests ?? 0} confirmed={confirmed} nonConfirmed={nonConfirmed} />
-            ) : <PasswordEventForm />}
+            ) : <PasswordEventForm password={password} setPassword={setPassword} accessEvent={loadEvent}/>}
         </div>
     );
 }

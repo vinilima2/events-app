@@ -73,7 +73,7 @@ export default function Step(props: StepProps) {
                 : "bg-zinc-700 hover:bg-zinc-600 text-white"
             }
           `}
-          disabled={nonNextStep()}
+          disabled={nonPreviousStep()}
         >
           <span>Previous</span>
         </button>
@@ -82,7 +82,7 @@ export default function Step(props: StepProps) {
             onClick={props.action}
             disabled={!enableNextStep}
             className={`
-                botao 
+                button 
                 ${
                   !enableNextStep
                     ? "bg-zinc-400 cursor-not-allowed opacity-50"

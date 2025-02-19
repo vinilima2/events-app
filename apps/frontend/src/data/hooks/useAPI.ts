@@ -22,12 +22,11 @@ export default function useAPI() {
       },
       body: body ? JSON.stringify(body) : null,
     });
-    return extractData(response);
+    return await extractData(response);
   }, []);
 
   async function extractData(response: Response) {
     let content: any;
-
     try {
       content = await response.json();
     } catch (error) {

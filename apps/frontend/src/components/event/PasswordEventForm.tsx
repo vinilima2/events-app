@@ -1,7 +1,7 @@
 import InputField from "@/components/shared/InputField";
 
 export interface PasswordEventFormProps {
-  password: string;
+  password: string | null;
   setPassword: (password: string) => void;
   accessEvent: () => void;
 }
@@ -15,7 +15,7 @@ export default function PasswordEventForm(props: PasswordEventFormProps) {
         Put your password and acess your event
       </p>
       <InputField
-        value={props.password}
+        value={props.password ?? ''}
         onChange={(e) => props.setPassword(e.target.value)}
         placeholder="Put your password"
         type="password"
