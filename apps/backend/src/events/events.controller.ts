@@ -10,17 +10,14 @@ export class EventsController {
     @Post()
     async saveEvent(@Body() newEvent: Event) {
         const event = await this.repository.findByAlias(newEvent?.alias ?? '');
-        if (!event) {
-            throw new Error('Event not found.');
-        }
-
         if (event && event.id !== newEvent.id) {
             throw new Error(`Event with alias ${newEvent.alias} already exist. `);
         }
-
-
+        
         const completeEvent = complementEvent(this.deserialize(newEvent));
         await this.repository.save(completeEvent);
+
+        return this.serialize(completeEvent)
     }
 
     @Post(':alias/guest')
@@ -60,7 +57,7 @@ export class EventsController {
 
 
     @Get('validate/:alias/:id')
-    async validateAlias(alias: string, id: string) {
+    async validateAlias(@Param('alias') alias: string, @Param('id')  id: string) {
         const event = await this.repository.findByAlias(alias);
         return { valid: !event || event.id === id }
     }
@@ -78,7 +75,7 @@ export class EventsController {
         if (!event) return null;
         return {
             ...event,
-            data: EventDate.parseToDate(event.date),
+            date: EventDate.parseToDate(event.date),
         } as Event;
     }
 }

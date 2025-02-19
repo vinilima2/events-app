@@ -31,7 +31,7 @@ export class EventPrisma {
                 expectedAudience: full, guests: full,
                 backgroundImage: true, date: true,
                 image: true, locale: true
-            }, where: { alias }
+            }, where: { alias: alias }
         }) as any;
     }
 }
