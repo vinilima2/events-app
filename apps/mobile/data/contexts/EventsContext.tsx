@@ -1,9 +1,9 @@
 import {createContext, useEffect, useState} from "react";
 import {Event} from "core/dist";
-import useAPI from "../hooks/useAPI";
-import useLocalStorage from "../hooks/useLocalStorage";
+import useAPI from "mobile/data/hooks/useAPI";
+import useLocalStorage from "mobile/data/hooks/useLocalStorage";
 
-interface EvnetsContextProps {
+interface EventsContextProps {
   event: Event | null;
   events: Event[];
 
@@ -12,7 +12,7 @@ interface EvnetsContextProps {
   addEventWithQrCode(qrcode: string): void;
 }
 
-const EventsContext = createContext<EvnetsContextProps>({} as any);
+const EventsContext = createContext<EventsContextProps>({} as any);
 
 export function EventsProvider(props: any) {
   const { httpPost } = useAPI();
