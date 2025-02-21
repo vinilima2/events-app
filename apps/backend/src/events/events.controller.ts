@@ -32,7 +32,7 @@ export class EventsController {
 
     @Post('access')
     async accessEvent(@Body() data: { id: string, password: string }) {
-        const event = await this.repository.findById(data?.id ?? '');
+        const event = await this.repository.findById(data?.id ?? '', true);
         if (!event) {
             throw new Error('Event not found.');
         }
