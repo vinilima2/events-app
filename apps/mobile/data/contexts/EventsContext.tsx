@@ -1,7 +1,7 @@
 import {createContext, useEffect, useState} from "react";
 import {Event} from "core/dist";
-import useAPI from "mobile/data/hooks/useAPI";
-import useLocalStorage from "mobile/data/hooks/useLocalStorage";
+import useAPI from "@/data/hooks/useAPI";
+import useLocalStorage from "@/data/hooks/useLocalStorage";
 
 interface EventsContextProps {
   event: Event | null;
@@ -9,7 +9,7 @@ interface EventsContextProps {
 
   selectEvent(id: string): void;
   deleteEvent(id: string): void;
-  addEventWithQrCode(qrcode: string): void;
+  addEventWithQrCodeScan(qrcode: string): Promise<void>;
 }
 
 const EventsContext = createContext<EventsContextProps>({} as any);
@@ -28,11 +28,12 @@ export function EventsProvider(props: any) {
     setEvent(loadedEvent ?? null);
   }
 
-  async function addEventWithQrCode(qrcode: string) {
+  async function addEventWithQrCode(qrcode: string) : Promise<void> {
     try {
       const idAndPassword = JSON.parse(qrcode);
 
-      const event = await loadEvent(idAndPassword.id, idAndPassword.senha);
+      const event = await loadEvent(idAndPassword.id, idAndPassword.password);
+      
       if (!event) {
         return deleteEvent(idAndPassword.id);
       }
@@ -63,7 +64,7 @@ export function EventsProvider(props: any) {
   }
 
   useEffect(() => {
-    loadEvents();
+    loadEvents().then();
   }, []);
 
   return (
@@ -72,7 +73,7 @@ export function EventsProvider(props: any) {
         event: event,
         events: events,
         selectEvent: selectEvent,
-        addEventWithQrCode: addEventWithQrCode,
+        addEventWithQrCodeScan: addEventWithQrCode,
         deleteEvent: deleteEvent,
       }}
     >
