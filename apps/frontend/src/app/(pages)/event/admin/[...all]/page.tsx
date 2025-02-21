@@ -1,12 +1,12 @@
 'use client'
 import EventDashboard from "@/components/event/EventDashboard";
 import PasswordEventForm from "@/components/event/PasswordEventForm";
-import {Event, Guest} from "@/core";
+import {Event, Guest} from "core/dist";
 import {use, useEffect, useState} from "react";
 import useEvents from "@/data/hooks/useEvents";
 
 export default function EventAdminPage(props: any) {
-    const g = useEvents()
+    const useEventsHook = useEvents()
     const params: any = use(props.params)
     const id = params.all[0];
     const [event, setEvent] = useState<Event | null>(null);
@@ -18,8 +18,9 @@ export default function EventAdminPage(props: any) {
         return total + (guest.numberCompanions + 1)
     }, 0)
 
-    function accessEvent() {
-        setEvent(g.loadEventWithPassword(id, password ?? '') as Event)
+    async function accessEvent() {
+        const loadedEvent = await useEventsHook.loadEventWithPassword(id, password ?? '')
+        setEvent(loadedEvent as Event)
     }
 
     function loadEvent(): any {

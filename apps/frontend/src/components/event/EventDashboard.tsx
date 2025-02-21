@@ -1,4 +1,4 @@
-import { Event, Guest } from "core";
+import { Event, Guest } from "core/dist";
 import EventInfo from "./EventInfo";
 import QrCodeAccess from "./QrCodeAccess";
 import Statistic from "../shared/Statistic";
@@ -24,7 +24,7 @@ export default function EventDashboard(props: EventDashboardProps) {
                 <Statistic text="Total Guests" value={props.total} image="/icons/escorts.svg" />
             </div>
 
-            <button className="button green self-end mt-12">
+            <button className="button green self-end mt-12" onClick={()=> location.reload()}>
                 <span>Refresh guest list</span>
             </button>
             

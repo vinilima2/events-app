@@ -1,4 +1,4 @@
-import { Guest } from "core"
+import { Guest } from "core/dist"
 import ItemGuest from "./ItemGuest"
 
 export interface GuestListProps {
@@ -11,7 +11,7 @@ export default function GuestList(props: GuestListProps) {
         <div>
             <ul className="flex flex-col gap-2">
                 {props.guests.map((guest) => (
-                    <ItemGuest guest={guest} />
+                    <ItemGuest guest={guest} key={guest.id}/>
                 ))}
             </ul>
         </div>

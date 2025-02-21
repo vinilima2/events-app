@@ -19,7 +19,7 @@ export default function EventInfo(props: EventInfoProps) {
             <div className="flex gap-2">
                 <Info label="Date:">
                     {new Date(event.date!).toLocaleDateString()}
-                    {"at"}
+                    {" at "}
                     {new Date(event.date!).toLocaleTimeString()}
                 </Info>
                 <Info label="Locale:">{event.locale}</Info>
